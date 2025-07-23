@@ -26,14 +26,18 @@ import "github.com/renniemaharaj/grouplogs/pkg/logger"
 ## Building a logger
 
 ```go
+// Although, logger.New func presets these
 l := logger.New().
 	Prefix("Primary").
-	Debugging(true).
-	JSONMode(false).
+	DebugMode(true).
+	JsonMode(false).
 	Subscribable(true).
 	MaxLines(100).
 	STDOUT(true).
 	Rotate()
+
+// Only Prefix may be necessary, but prefix defaults to 'Logger'
+quickLogger := logger.New().Prefix("Quick-Logger")
 ```
 
 ---
@@ -41,6 +45,7 @@ l := logger.New().
 ## Logging methods
 
 ```go
+// The methods also print, filename, line and function where there are called
 l.Info("This is an information").
 	Success("This is a success").
 	Warning("This is a warning").
@@ -53,12 +58,18 @@ l.Info("This is an information").
 ## Grouping loggers
 
 ```go
+// A group for centralizing multiple loggers. Their logs are all piped into the group's delegate
 group := logger.Group()
 
-l1 := logger.New().Prefix("L1").Subscribable(true).Rotate()
-l2 := logger.New().Prefix("L2").Subscribable(true).Rotate()
+// Setting Subscribable to false is safe to use with groups. Groups auto enable this
+l1 := logger.New().Prefix("L1").Subscribable(false)
 
+// Rotate is implied on logger.New, but can be used to manually rotate the file
+l2 := logger.New().Prefix("L2").Rotate()
+
+// Subscribable is required by the group mechanism. It is auto enabled on join
 group.Join(l1)
+
 group.Join(l2)
 
 // Now any logs from l1 or l2 will be piped into group.Delegate
@@ -74,7 +85,7 @@ func logHandler(con *websocket.Conn) {
 	group := logger.Group()
 
 	// Add one or more loggers
-	l := logger.New().Prefix("WS").Subscribable(true).Rotate()
+	l := logger.New().Prefix("WS")
 	group.Join(l)
 
 	// Example logs
