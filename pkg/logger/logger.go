@@ -47,7 +47,7 @@ func (l *Logger) log(level string, msg string) {
 
 	timestamp := time.Now().Format("2006-01-02 15:04:05.000")
 
-	pc, file, fileLine, ok := runtime.Caller(1)
+	pc, file, fileLine, ok := runtime.Caller(2)
 
 	var funcName, shortFile string
 	if ok {
@@ -77,7 +77,9 @@ func (l *Logger) log(level string, msg string) {
 	}
 
 	// Broadcast to all local subscribers
-	l.subscribers.Broadcast(*line)
+	if l.subscribable && l.subscribers != nil { // Ensure the logger is subscribable
+		l.subscribers.Broadcast(*line)
+	}
 
 	debugFunc := func() {
 		if l.debugging {

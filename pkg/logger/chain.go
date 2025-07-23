@@ -11,17 +11,19 @@ func (l *Logger) MaxLines(m int) *Logger {
 	return l
 }
 
+// Should out to std out also?
 func (l *Logger) STDOUT(b bool) *Logger {
 	l.toStdout = b
 	return l
 }
 
-func (l *Logger) JSONMode(b bool) *Logger {
+func (l *Logger) JsonMode(b bool) *Logger {
 	l.jsonMode = b
 	return l
 }
 
-func (l *Logger) Debugging(b bool) *Logger {
+// Will only out debugs to stdout if stdout and debug mode
+func (l *Logger) DebugMode(b bool) *Logger {
 	l.debugging = b
 	return l
 }
@@ -68,6 +70,7 @@ func (l *Logger) Error(msg string) *Logger {
 	return l
 }
 
+// Error with error
 func (l *Logger) Fatal(e error) *Logger {
 	l.log("error", e.Error())
 

@@ -1,0 +1,5 @@
+2025-07-22 23:09:43.512: INFO [Secondary] This is an information (main.go:37 in main.main)
+2025-07-22 23:09:43.512: SUCCESS [Secondary] This is a success (main.go:38 in main.main)
+2025-07-22 23:09:43.512: WARNING [Secondary] This is a warning (main.go:39 in main.main)
+2025-07-22 23:09:43.512: DEBUG [Secondary] Is debugging enabled (main.go:40 in main.main)
+2025-07-22 23:09:43.512: ERROR [Secondary] Oh, no. This is an error (main.go:41 in m2025-07-222025-07-22 23:09:44.014: SUCCESS [Secondary] Removed logger 2 from group (main.go:61 in main.main)

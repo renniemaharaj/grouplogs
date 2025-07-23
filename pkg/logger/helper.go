@@ -12,12 +12,14 @@ func CreateGroup() *Group {
 	return NewGroup()
 }
 
-func New() *Logger {
-	return CreateLogger()
+func createLogger() *Logger {
+	return &Logger{}
 }
 
-func CreateLogger() *Logger {
-	return &Logger{}
+func New() *Logger {
+	return createLogger().Subscribable(false).
+		JsonMode(false).Prefix("Logger").DebugMode(false).
+		STDOUT(true).MaxLines(100).Rotate()
 }
 
 func (l *Logger) Rotate() *Logger {

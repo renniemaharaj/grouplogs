@@ -14,17 +14,14 @@ func main() {
 
 	l1 := logger.New().
 		Prefix("Primary").
-		Debugging(true).
-		JSONMode(false).
-		Subscribable(true).MaxLines(100).STDOUT(false).Rotate()
+		DebugMode(true).
+		JsonMode(false).MaxLines(100).STDOUT(false).Subscribable(false)
 
+	// Group join function auto sets subscribable to true
 	group.Join(l1)
 
-	l2 := logger.New().
-		Prefix("Secondary").
-		Debugging(true).
-		JSONMode(false).
-		Subscribable(true).MaxLines(100).STDOUT(false).Rotate()
+	// Logger.New function returns a standard, prebuilt logger, but customizable
+	l2 := logger.New().Prefix("Secondary")
 
 	group.Join(l2)
 
