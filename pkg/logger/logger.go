@@ -14,13 +14,13 @@ import (
 
 // The shape a line/log
 type Line struct {
-	Time   string
-	Level  string
-	Prefix string
-	Msg    string
-	File   string
-	Line   int
-	Func   string
+	Time   string `json:"time"`
+	Level  string `json:"level"`
+	Prefix string `json:"prefix"`
+	Msg    string `json:"msg"`
+	File   string `json:"file"`
+	Line   int    `json:"line"`
+	Func   string `json:"func"`
 }
 
 // The logger shape
