@@ -1,0 +1,6 @@
+2025-07-26 12:46:57.169: INFO [Secondary] This is an information (main.go:35 in main.main)
+2025-07-26 12:46:57.169: SUCCESS [Secondary] This is a success (main.go:36 in main.main)
+2025-07-26 12:46:57.170: WARNING [Secondary] This is a warning (main.go:37 in main.main)
+2025-07-26 12:46:57.170: ERROR [Secondary] Oh, no. This is an error (main.go:39 in main.main)
+2025-07-26 12:46:57.673: SUCCESS [Secondary] Removed logger 2 from group (main.go:59 in main.main)
+.672: SUCCESS [Primary] Removing logger 1 from group (main.go:55 in main.main)

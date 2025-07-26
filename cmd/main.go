@@ -11,6 +11,7 @@ import (
 func main() {
 
 	group := logger.CreateGroup()
+	sub := group.Delegate.Subscribe()
 
 	l1 := logger.New().
 		Prefix("Primary").
@@ -42,7 +43,7 @@ func main() {
 
 	for {
 		select {
-		case l := <-group.Delegate:
+		case l := <-sub.C:
 			lBytes, _ := json.Marshal(l)
 			fmt.Println(string(lBytes))
 			if !timer.Stop() {

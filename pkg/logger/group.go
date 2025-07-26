@@ -8,14 +8,14 @@ import (
 type Group struct {
 	mu sync.Mutex
 
-	Delegate      chan *Line
+	Delegate      *Subscribers
 	subscriptions map[*Logger]*Subscription
 }
 
 // NewGroup initializes a new log group.
 func NewGroup() *Group {
 	return &Group{
-		Delegate:      make(chan *Line, 100),
+		Delegate:      &Subscribers{},
 		subscriptions: make(map[*Logger]*Subscription),
 	}
 }
@@ -30,7 +30,7 @@ func (g *Group) Join(l *Logger) {
 
 	go func() {
 		for line := range sub.C {
-			g.Delegate <- &line
+			g.Delegate.Broadcast(line)
 		}
 	}()
 }
