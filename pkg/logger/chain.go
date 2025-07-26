@@ -31,7 +31,7 @@ func (l *Logger) DebugMode(b bool) *Logger {
 func (l *Logger) Subscribable(b bool) *Logger {
 	l.subscribable = b
 	if l.subscribable {
-		l.subscribers = &Subscribers{}
+		l.Subscribers = &Subscribers{}
 	}
 
 	return l

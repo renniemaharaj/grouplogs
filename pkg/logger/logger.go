@@ -38,7 +38,7 @@ type Logger struct {
 	currentLine int // Current line tracker
 
 	subscribable bool         // Is the logger subscribable?
-	subscribers  *Subscribers // Subscribers to the logger
+	Subscribers  *Subscribers // Subscribers to the logger
 }
 
 func (l *Logger) log(level string, msg string) {
@@ -77,8 +77,8 @@ func (l *Logger) log(level string, msg string) {
 	}
 
 	// Broadcast to all local subscribers
-	if l.subscribable && l.subscribers != nil { // Ensure the logger is subscribable
-		l.subscribers.Broadcast(*line)
+	if l.subscribable && l.Subscribers != nil { // Ensure the logger is subscribable
+		l.Subscribers.Broadcast(*line)
 	}
 
 	debugFunc := func() {

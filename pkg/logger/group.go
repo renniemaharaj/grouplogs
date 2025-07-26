@@ -22,7 +22,7 @@ func NewGroup() *Group {
 
 // Join subscribes to a logger and pipes its output into the group's delegate.
 func (g *Group) Join(l *Logger) {
-	sub := l.Subscribable(true).subscribers.Subscribe() // Auto set subscribable
+	sub := l.Subscribable(true).Subscribers.Subscribe() // Auto set subscribable
 
 	g.mu.Lock()
 	g.subscriptions[l] = sub
@@ -45,6 +45,6 @@ func (g *Group) Remove(l *Logger) {
 	g.mu.Unlock()
 
 	if ok {
-		l.subscribers.Unsubscribe(sub)
+		l.Subscribers.Unsubscribe(sub)
 	}
 }
