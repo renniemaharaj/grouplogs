@@ -2,11 +2,13 @@ package logger
 
 import "sync"
 
+// Subscription represents a single subscriber with a unique ID and a channel to receive log lines
 type Subscription struct {
 	K int
 	C chan Line
 }
 
+// Subscribers manages multiple subscriptions with concurrency safety
 type Subscribers struct {
 	mu          sync.Mutex
 	nextID      int

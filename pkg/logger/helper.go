@@ -8,6 +8,8 @@ import (
 
 var twcLogsDir = "./twcLogs"
 
+// Deprecated: CreateGroup is deprecated and will be removed in future versions.
+// Use NewGroup instead.
 func CreateGroup() *Group {
 	return NewGroup()
 }
@@ -16,7 +18,16 @@ func createLogger() *Logger {
 	return &Logger{}
 }
 
+// Deprecated: New is deprecated and will be removed in future versions.
+// Use NewLogger instead.
 func New() *Logger {
+	return createLogger().Subscribable(false).
+		JsonMode(false).Prefix("Logger").DebugMode(false).
+		STDOUT(true).MaxLines(100).Rotate()
+}
+
+// NewLogger creates and returns a new Logger instance with default settings.
+func NewLogger() *Logger {
 	return createLogger().Subscribable(false).
 		JsonMode(false).Prefix("Logger").DebugMode(false).
 		STDOUT(true).MaxLines(100).Rotate()

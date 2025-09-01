@@ -90,6 +90,8 @@ func (l *Logger) log(level string, msg string) {
 	fmt.Fprintln(l.writer, lineString)
 	if l.toStdout {
 		switch line.Level {
+		case "PRINT":
+			fmt.Print(lineString)
 		case "INFO":
 			fmt.Println(lineString)
 		case "SUCCESS":
@@ -100,7 +102,8 @@ func (l *Logger) log(level string, msg string) {
 			color.Red(lineString)
 		case "FATAL":
 			color.Red(lineString)
-			os.Exit(1)
+		case "PANIC":
+			color.Red(lineString)
 		case "DEBUG":
 			debugFunc()
 		default:

@@ -6,6 +6,7 @@ func (l *Logger) Prefix(p string) *Logger {
 	return l
 }
 
+// MaxLines sets the maximum number of lines allowed for a file
 func (l *Logger) MaxLines(m int) *Logger {
 	l.maxLines = m
 	return l
@@ -17,6 +18,7 @@ func (l *Logger) STDOUT(b bool) *Logger {
 	return l
 }
 
+// Whether to output in json format
 func (l *Logger) JsonMode(b bool) *Logger {
 	l.jsonMode = b
 	return l
@@ -28,51 +30,12 @@ func (l *Logger) DebugMode(b bool) *Logger {
 	return l
 }
 
+// Enable or disable subscribable mode
 func (l *Logger) Subscribable(b bool) *Logger {
 	l.subscribable = b
 	if l.subscribable {
 		l.Subscribers = &Subscribers{}
 	}
-
-	return l
-}
-
-// Logging functions
-func (l *Logger) Info(msg string) *Logger {
-	l.log("info", msg)
-
-	return l
-}
-
-func (l *Logger) Debug(msg string) *Logger {
-	if l.debugging {
-		l.log("debug", msg)
-	}
-
-	return l
-}
-
-func (l *Logger) Success(msg string) *Logger {
-	l.log("success", msg)
-
-	return l
-}
-
-func (l *Logger) Warning(msg string) *Logger {
-	l.log("warning", msg)
-
-	return l
-}
-
-func (l *Logger) Error(msg string) *Logger {
-	l.log("error", msg)
-
-	return l
-}
-
-// Error with error
-func (l *Logger) Fatal(e error) *Logger {
-	l.log("error", e.Error())
 
 	return l
 }

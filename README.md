@@ -46,11 +46,44 @@ quickLogger := logger.New().Prefix("Quick-Logger")
 
 ```go
 // The methods also print, filename, line and function where there are called
-l.Info("This is an information").
-	Success("This is a success").
-	Warning("This is a warning").
-	Debug("Is debugging enabled").
-	Error("Oh, no. This is an error")
+// Basic logging methods
+
+// Print methods (plain, formatted, newline)
+// Only print will NOT newline after. All other logFns do
+l.Print("Print a message")
+l.Printf("Print a formatted number: %d", 42)
+l.Println("Print with newline")
+
+// Info methods
+l.Info("This is an information")
+l.InfoF("Info with value: %v", 123)
+
+// Debug methods
+l.Debug("Is debugging enabled")
+l.DebugF("Debug value: %v", "debugging")
+
+// Success methods
+l.Success("This is a success")
+l.SuccessF("Success: %s", "operation completed")
+
+// Warning methods
+l.Warning("This is a warning")
+l.WarningF("Warning: %s", "disk space low")
+
+// Error methods
+l.Error("Oh, no. This is an error")
+l.ErrorF("Error: %s", "file not found")
+
+// Fatal methods (logs and exits)
+l.Fatal(errors.New("fatal error occurred"))
+l.Fatalf("Fatal error: %s", "unexpected shutdown")
+l.Fatalln("Fatal error with newline")
+
+// Panic methods (logs and panics)
+l.Panic(errors.New("panic error"))
+l.Panicf("Panic: %s", "critical failure")
+l.Panicln("Panic with newline")
+```
 ```
 
 ---
